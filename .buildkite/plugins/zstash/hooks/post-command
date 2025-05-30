@@ -4,6 +4,6 @@ set -euo pipefail
 
 zstash save \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
-  --key ${BUILDKITE_PLUGIN_ZSTASH_KEY} \
-  --bucket-url ${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL} \
+  --key "${BUILDKITE_PLUGIN_ZSTASH_KEY}" \
+  --bucket-url "${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL}" \
   --paths "${BUILDKITE_PLUGIN_ZSTASH_PATHS}"
