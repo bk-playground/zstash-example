@@ -2,6 +2,9 @@
 set -euo pipefail
 shopt -s lastpipe
 
+BK_ZSTASH_ID="${BUILDKITE_PLUGIN_ZIPSTASH_ID:-}"
+
+
 zstash restore \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
   --key "${BUILDKITE_PLUGIN_ZSTASH_KEY}" \
@@ -10,4 +13,4 @@ zstash restore \
 
 echo "Cache HIT: ${cache_result}"
 
-buildkite-agent meta-data set "zstash.restore.${BUILDKITE_PLUGIN_ZSTASH_KEY}.result" "${cache_result}"
+buildkite-agent meta-data set "zstash.restore.${BK_ZSTASH_ID}.result" "${cache_result}"

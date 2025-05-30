@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cache_result=$(buildkite-agent meta-data get "zipstash.restore.$BUILDKITE_PLUGIN_ZSTASH_KEY.result")
+BK_ZSTASH_ID="${BUILDKITE_PLUGIN_ZIPSTASH_ID:-}"
+
+
+cache_result=$(buildkite-agent meta-data get "zipstash.restore.$BK_ZSTASH_ID.result")
 
 BK_ZSTASH_SKIP=${cache_result:-false}
 
