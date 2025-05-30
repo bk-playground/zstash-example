@@ -4,8 +4,8 @@ shopt -s lastpipe
 
 zstash restore \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
-  --key ${BUILDKITE_PLUGIN_ZSTASH_KEY} \
-  --bucket-url ${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL} \
+  --key "${BUILDKITE_PLUGIN_ZSTASH_KEY}" \
+  --bucket-url "${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL}" \
   --paths "${BUILDKITE_PLUGIN_ZSTASH_PATHS}" | read cache_result
 
 echo "Cache HIT: ${cache_result}"
