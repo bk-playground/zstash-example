@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+
+
+zstash save \
+  --endpoint "${BUILDKITE_PLUGIN_ZIPSTASH_ENDPOINT}" \
+  --key ${BUILDKITE_PLUGIN_ZIPSTASH_KEY} \
+  --bucket-url ${BUILDKITE_PLUGIN_ZIPSTASH_BUCKET_URL} \
+  --paths "${BUILDKITE_PLUGIN_ZIPSTASH_PATHS}"
