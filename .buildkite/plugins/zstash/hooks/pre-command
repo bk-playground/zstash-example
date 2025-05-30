@@ -2,8 +2,7 @@
 set -euo pipefail
 shopt -s lastpipe
 
-BK_ZSTASH_ID="${BUILDKITE_PLUGIN_ZIPSTASH_ID:-}"
-
+BK_ZSTASH_ID="${BUILDKITE_PLUGIN_ZSTASH_ID:-}"
 
 zstash restore \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
