@@ -2,12 +2,12 @@
 set -euo pipefail
 shopt -s lastpipe
 
+BK_ZSTASH_ID="${BUILDKITE_PLUGIN_ZSTASH_ID:-}"
+
 BK_ZSTASH_BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 source "${BK_ZSTASH_BASEDIR}/lib/shared.bash"
 
 CACHE_KEY="$(expand_templates "$BUILDKITE_PLUGIN_ZSTASH_KEY")"
-
-BK_ZSTASH_ID="${BUILDKITE_PLUGIN_ZSTASH_ID:-}"
 
 zstash restore \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
