@@ -3,10 +3,10 @@ set -euo pipefail
 shopt -s lastpipe
 
 zstash restore \
-  --endpoint "${BUILDKITE_PLUGIN_ZIPSTASH_ENDPOINT}" \
-  --key ${BUILDKITE_PLUGIN_ZIPSTASH_KEY} \
-  --bucket-url ${BUILDKITE_PLUGIN_ZIPSTASH_BUCKET_URL} \
-  --paths "${BUILDKITE_PLUGIN_ZIPSTASH_PATHS}" | read cache_result
+  --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
+  --key ${BUILDKITE_PLUGIN_ZSTASH_KEY} \
+  --bucket-url ${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL} \
+  --paths "${BUILDKITE_PLUGIN_ZSTASH_PATHS}" | read cache_result
 
 echo "Cache HIT: ${cache_result}"
 
