@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+cache_result=$(buildkite-agent meta-data get "zipstash.restore.$BUILDKITE_PLUGIN_ZSTASH_KEY.result")
+
+BK_ZIPSTASH_SKIP=${cache_result:-false}
 
 zstash save \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
   --key "${BUILDKITE_PLUGIN_ZSTASH_KEY}" \
   --bucket-url "${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL}" \
-  --paths "${BUILDKITE_PLUGIN_ZSTASH_PATHS}"
+  --paths "${BUILDKITE_PLUGIN_ZSTASH_PATHS}" \
+  --skip="${BK_ZIPSTASH_SKIP}"
