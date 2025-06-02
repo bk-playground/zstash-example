@@ -11,7 +11,8 @@ CACHE_KEY="$(expand_templates "$BUILDKITE_PLUGIN_ZSTASH_KEY")"
 
 zstash restore \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
-  --key "${CACHE_KEY}" \
+  --id "${BK_ZSTASH_ID}" \
+  --key "$(printf '%s' "$BUILDKITE_PLUGIN_ZSTASH_KEY")" \
   --bucket-url "${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL}" \
   --paths "${BUILDKITE_PLUGIN_ZSTASH_PATHS}" | read cache_result
 

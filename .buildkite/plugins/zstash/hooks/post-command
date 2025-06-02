@@ -14,7 +14,8 @@ BK_ZSTASH_SKIP=${cache_result:-false}
 
 zstash save \
   --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
-  --key "${CACHE_KEY}" \
+  --id "${BK_ZSTASH_ID}" \
+  --key "$(printf '%s' "$BUILDKITE_PLUGIN_ZSTASH_KEY")" \
   --bucket-url "${BUILDKITE_PLUGIN_ZSTASH_BUCKET_URL}" \
   --paths "${BUILDKITE_PLUGIN_ZSTASH_PATHS}" \
   --skip="${BK_ZSTASH_SKIP}"
