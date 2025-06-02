@@ -3,7 +3,7 @@ common:
   - zipstash_pkg_plugin: &zstash-node
       .buildkite/plugins/zstash:
         id: "node"
-        key: '{{ id }}-{{ checksum "package-lock.json" }}''
+        key: '{{ id }}-{{ checksum "package-lock.json" }}'
         paths: |
           node_modules
         endpoint: $ENDPOINT
