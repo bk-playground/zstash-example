@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "esbuild --bundle index.ts --outdir=dist --minify --sourcemap",
     "test": "npx jest"
   },
   "keywords": [],
