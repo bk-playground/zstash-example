@@ -1,4 +1,3 @@
-
 common:
   - zipstash_pkg_plugin: &zstash-node
       .buildkite/plugins/zstash:
@@ -10,15 +9,31 @@ common:
         bucket-url: $BUCKET_URL
 
 steps:
+  - group: "With cache"
+    steps:
+      - command: npm install
+        plugins:
+          - *zstash-node
+        key: npm-install
 
-  - command: npm install
-    plugins:
-      - *zstash-node
-    key: npm-install
+      - command: npm test
+        plugins:
+          - *zstash-node
+        key: npm-test
+        depends_on: [npm-install]
 
-  - command: npm test
-    plugins:
-      - *zstash-node
-    key: npm-test
-    depends_on: [npm-install]
+      - label: "Install (with cache)"
+        command: npm run build
+        plugins:
+          - *zstash-node
+        key: npm-install-cached
+        depends_on: [npm-install]
 
+  - group: "Without cache"
+    steps:
+      - command: npm install
+        key: npm-install-uncached
+
+      - command: npm test
+        key: npm-test-uncached
+        depends_on: [npm-install-uncached]
