@@ -11,10 +11,10 @@ common:
 steps:
   - group: "With cache"
     steps:
-      - command: npm install
+      - command: .buildkite/scripts/npm-install-no-cache.sh
         plugins:
           - *zstash-node
-        key: npm-install
+        key: .buildkite/scripts/npm-install-no-cache.sh
 
       - command: npm test
         plugins:
@@ -31,11 +31,11 @@ steps:
 
   - group: "Without cache"
     steps:
-      - command: npm install
+      - command: .buildkite/scripts/npm-install-no-cache.sh
         key: npm-install-uncached
 
       - command: 
-        - npm install
-        - npm test
+        - .buildkite/scripts/npm-install-no-cache.sh
+        - "npm test"
         key: npm-test-uncached
         depends_on: [npm-install-uncached]
