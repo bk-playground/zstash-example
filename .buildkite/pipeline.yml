@@ -3,6 +3,8 @@ common:
       .buildkite/plugins/zstash:
         id: "node"
         key: '{{ id }}-{{ agent.os }}-{{ agent.arch }}-{{ checksum "package-lock.json" }}'
+        fallback_keys: |
+          '{{ id }}-{{ agent.os }}-{{ agent.arch }}-'
         paths: |
           node_modules
         endpoint: $ENDPOINT
@@ -17,7 +19,7 @@ common:
 steps:
   - group: "With cache"
     steps:
-      - command: .buildkite/scripts/npm-install-no-cache.sh
+      - command: npm install
         plugins:
           - *zstash-node
           - *docker-compose
@@ -40,13 +42,13 @@ steps:
 
   - group: "Without cache"
     steps:
-      - command: .buildkite/scripts/npm-install-no-cache.sh
+      - command: npm install
         plugins:
           - *docker-compose
         key: npm-install-uncached
 
       - command: 
-        - .buildkite/scripts/npm-install-no-cache.sh
+        - npm install
         - npm test
         plugins:
           - *docker-compose

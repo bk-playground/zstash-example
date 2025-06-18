@@ -9,6 +9,8 @@ configuration:
       type: string
     key:
       type: string
+    fallback_keys:
+      type: string
     paths:
       type: string
     endpoint:
