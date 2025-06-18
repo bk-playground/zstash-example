@@ -7,6 +7,12 @@ common:
           node_modules
         endpoint: $ENDPOINT
         bucket-url: $BUCKET_URL
+  -  docker-compose#v5.2.0: &docker-compose
+      config: .buildkite/docker-compose.yaml
+      run: golangci-lint
+      tty: true
+      mount-buildkite-agent: true
+
 
 steps:
   - group: "With cache"
@@ -14,11 +20,13 @@ steps:
       - command: .buildkite/scripts/npm-install-no-cache.sh
         plugins:
           - *zstash-node
+          - *docker-compose
         key: npm-install
 
       - command: npm test
         plugins:
           - *zstash-node
+          - *docker-compose
         key: npm-test
         depends_on: [npm-install]
 
@@ -26,16 +34,21 @@ steps:
         command: npm run build
         plugins:
           - *zstash-node
+          - *docker-compose
         key: npm-install-cached
         depends_on: [npm-install]
 
   - group: "Without cache"
     steps:
       - command: .buildkite/scripts/npm-install-no-cache.sh
+        plugins:
+          - *docker-compose
         key: npm-install-uncached
 
       - command: 
         - .buildkite/scripts/npm-install-no-cache.sh
         - npm test
+        plugins:
+          - *docker-compose
         key: npm-test-uncached
         depends_on: [npm-install-uncached]
