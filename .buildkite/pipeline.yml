@@ -14,7 +14,7 @@ steps:
       - command: .buildkite/scripts/npm-install-no-cache.sh
         plugins:
           - *zstash-node
-        key: .buildkite/scripts/npm-install-no-cache.sh
+        key: npm-install
 
       - command: npm test
         plugins:
@@ -36,6 +36,6 @@ steps:
 
       - command: 
         - .buildkite/scripts/npm-install-no-cache.sh
-        - "npm test"
+        - npm test
         key: npm-test-uncached
         depends_on: [npm-install-uncached]
