@@ -10,7 +10,7 @@ common:
   -  docker-compose_plugin: &docker-compose
       docker-compose#v5.2.0:
         config: .buildkite/docker-compose.yaml
-        run: golangci-lint
+        run: node
         tty: true
         mount-buildkite-agent: true
 
