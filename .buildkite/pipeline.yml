@@ -7,12 +7,12 @@ common:
           node_modules
         endpoint: $ENDPOINT
         bucket-url: $BUCKET_URL
-  -  docker-compose#v5.2.0: &docker-compose
-      config: .buildkite/docker-compose.yaml
-      run: golangci-lint
-      tty: true
-      mount-buildkite-agent: true
-
+  -  docker-compose_plugin: &docker-compose
+      docker-compose#v5.2.0:
+        config: .buildkite/docker-compose.yaml
+        run: golangci-lint
+        tty: true
+        mount-buildkite-agent: true
 
 steps:
   - group: "With cache"
