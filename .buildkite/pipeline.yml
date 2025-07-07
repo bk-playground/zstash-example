@@ -4,7 +4,7 @@ common:
         id: "node"
         key: '{{ id }}-{{ agent.os }}-{{ agent.arch }}-{{ checksum "package-lock.json" }}'
         fallback_keys: |
-          '{{ id }}-{{ agent.os }}-{{ agent.arch }}-'
+          {{ id }}-{{ agent.os }}-{{ agent.arch }}-
         paths: |
           node_modules
         endpoint: $ENDPOINT
