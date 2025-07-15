@@ -13,8 +13,6 @@ configuration:
       type: string
     paths:
       type: string
-    endpoint:
-      type: string
     bucket-url:
       type: string
     skip-save:

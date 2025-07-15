@@ -5,7 +5,6 @@ shopt -s lastpipe
 BK_ZSTASH_ID="${BUILDKITE_PLUGIN_ZSTASH_ID:-}"
 
 zstash restore \
-  --endpoint "${BUILDKITE_PLUGIN_ZSTASH_ENDPOINT}" \
   --id "${BK_ZSTASH_ID}" \
   --key "$(printf '%s' "$BUILDKITE_PLUGIN_ZSTASH_KEY")" \
   --fallback-keys "$(printf '%s' "${BUILDKITE_PLUGIN_ZSTASH_FALLBACK_KEYS:-}")" \
