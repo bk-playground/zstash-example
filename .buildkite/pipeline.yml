@@ -1,7 +1,4 @@
 common:
-  - aws-assume-role_plugin: &aws-assume-role
-      aws-assume-role-with-web-identity#v1.1.0:
-        role-arn: ${CACHE_ROLE}
   - zipstash_pkg_plugin: &zstash-node
       .buildkite/plugins/zstash:
         id: "node"
@@ -23,14 +20,12 @@ steps:
     steps:
       - command: npm install
         plugins:
-          - *aws-assume-role
           - *zstash-node
           - *docker-compose
         key: npm-install
 
       - command: npm test
         plugins:
-          - *aws-assume-role
           - *zstash-node
           - *docker-compose
         key: npm-test
@@ -39,7 +34,6 @@ steps:
       - label: "Install (with cache)"
         command: npm run build
         plugins:
-          - *aws-assume-role
           - *zstash-node
           - *docker-compose
         key: npm-install-cached
