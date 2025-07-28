@@ -1,13 +1,6 @@
 common:
   - zipstash_pkg_plugin: &zstash-node
       .buildkite/plugins/zstash:
-        id: "node"
-        key: '{{ id }}-{{ agent.os }}-{{ agent.arch }}-{{ checksum "package-lock.json" }}'
-        fallback_keys: |
-          {{ id }}-{{ agent.os }}-{{ agent.arch }}-
-        paths: |
-          node_modules
-        bucket-url: $BUCKET_URL
   -  docker-compose_plugin: &docker-compose
       docker-compose#v5.2.0:
         config: .buildkite/docker-compose.yaml
