@@ -5,16 +5,8 @@ requirements:
   - zstash
 configuration:
   properties:
-    id:
-      type: string
-    key:
-      type: string
-    fallback_keys:
-      type: string
-    paths:
-      type: string
-    bucket-url:
-      type: string
-    skip-save:
-      type: boolean
+    ids:
+      type: array
+      items:
+        type: string
   additionalProperties: false
