@@ -1,5 +1,6 @@
 caches:
-  - id: "node"
+  - registry: "~"
+    id: "node"
     key: '{{ id }}-{{ agent.os }}-{{ agent.arch }}-{{ checksum "package-lock.json" }}'
     fallback_keys:
       - '{{ id }}-{{ agent.os }}-{{ agent.arch }}-'
