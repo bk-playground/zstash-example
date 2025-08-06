@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-echo "IDS: ${BUILDKITE_PLUGIN_ZSTASH_IDS:-}"
-
-zstash save

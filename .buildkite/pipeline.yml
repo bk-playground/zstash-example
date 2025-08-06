@@ -1,6 +1,8 @@
 common:
   - zipstash_pkg_plugin: &zstash-node
-      .buildkite/plugins/zstash:
+      improbable-eng/metahook:
+        pre-command: zstash restore --ids "node"
+        post-command: zstash restore --ids "node"
   -  docker-compose_plugin: &docker-compose
       docker-compose#v5.2.0:
         config: .buildkite/docker-compose.yaml
