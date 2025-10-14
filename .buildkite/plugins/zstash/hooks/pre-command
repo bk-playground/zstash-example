@@ -2,9 +2,11 @@
 set -euo pipefail
 shopt -s lastpipe
 
-echo "IDS: ${BUILDKITE_PLUGIN_ZSTASH_IDS:-}"
 
-zstash restore | read cache_result
+if [ -n "${BUILDKITE_PLUGIN_ZSTASH_IDS:-}" ]; then
+  zstash restore --ids "${BUILDKITE_PLUGIN_ZSTASH_IDS}" | read cache_result
+else
+  zstash restore | read cache_result
+fi
 
 echo "Cache HIT: ${cache_result}"
-
